@@ -47,9 +47,9 @@ var exchangeDFlow = {
         ]
 
         // 可使用 --exchangeDFlowCircle-productId 21010621565413402 选项指定兑换流量包ID
-        let { 'exchangeDFlowCircle-productId': productId = 'ff80808166c5ee6701676ce21fd14716' } = options
+        let { 'exchangeDFlowCircle-productId': productId = '' } = options
         if (product.map(p => p.productId).indexOf(productId + '') === -1) {
-            productId = 'ff80808166c5ee6701676ce21fd14716'
+            productId = ''
         }
         let selectedFlow = product.find(p => p.productId === productId)
         console.info('将兑换', selectedFlow.productName)
@@ -248,11 +248,11 @@ var exchangeDFlow = {
             console.info('剩余流量', parseFloat(notUsed).toFixed(2), 'MB', '检查限制', minFlow, 'MB')
             if (notUsed < minFlow) {
                 console.info(`剩余流量包流量不足${minFlow}M`)
-                need_exchange = true
+                need_exchange = false
             }
         } else {
             console.info('没有有效的流量包')
-            need_exchange = true
+            need_exchange = false
         }
 
         if (need_exchange) {
